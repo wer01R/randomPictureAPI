@@ -1,6 +1,7 @@
 using Application.Pictures.Command;
 using Application.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.JSInterop.Infrastructure;
 using Persistence;
 
@@ -23,6 +24,10 @@ var app = builder.Build();
 app.MapControllers();
 app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader()
     .WithOrigins("http://localhost:5000", "http://localhost:3000", "https://localhost:3000"));
+
+app.UseStaticFiles(new StaticFileOptions {
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "..", "public")),
+});
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;

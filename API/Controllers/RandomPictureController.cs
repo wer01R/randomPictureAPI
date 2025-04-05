@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Application.Pictures.Query;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ namespace API.Controllers;
 public class RandomPictureController : BaseApiController
 {
     [HttpGet]
-    public async Task<IActionResult> GetRandomPicture()
+    public async Task<ActionResult<PhysicalFileResult>> GetRandomPicture()
     {
         Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
         Picture p = await mediator.Send(new GetRandomPicture.Query{});

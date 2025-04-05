@@ -5,12 +5,13 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import App from './App.tsx'
+import { RouterProvider } from 'react-router'
 import { CssBaseline } from '@mui/material';
+import { router } from './app/router/Router';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <CssBaseline />
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
